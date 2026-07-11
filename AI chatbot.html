@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>AI Chatbot</h2>
+
+        <div id="chat-box"></div>
+
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let input = document.getElementById("user-input");
+            let chatBox = document.getElementById("chat-box");
+
+            let userMessage = input.value;
+
+            if (userMessage.trim() === "") return;
+
+            chatBox.innerHTML += "<p><b>You:</b> " + userMessage + "</p>";
+
+            let botReply = "Sorry, I don't understand your question.";
+
+            if (userMessage.toLowerCase().includes("python")) {
+                botReply = "Python is a powerful programming language.";
+            } else if (userMessage.toLowerCase().includes("flask")) {
+                botReply = "Flask is a lightweight Python web framework.";
+            } else if (userMessage.toLowerCase().includes("bye")) {
+                botReply = "Goodbye! Have a great day.";
+            }
+
+            chatBox.innerHTML += "<p><b>Bot:</b> " + botReply + "</p>";
+
+            input.value = "";
+        }
+    </script>
+
+</body>
+</html>
